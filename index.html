@@ -3,25 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내 생애 추억 사진첩 (1971~2013)</title>
+  <title>추억의 사진첩</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; scroll-behavior: smooth; }
-    body { background-color: #f8fafc; color: #1e293b; padding: 20px 15px 60px 15px; max-width: 680px; margin: 0 auto; line-height: 1.5; }
-    .header-card { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; text-align: center; padding: 28px 20px; border-radius: 18px; box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25); margin-bottom: 22px; }
-    .header-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+    body { background-color: #f8fafc; color: #1e293b; padding: 8px 10px 60px 10px; max-width: 680px; margin: 0 auto; line-height: 1.5; }
+    .header-card { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; text-align: center; padding: 10px 16px; border-radius: 12px; box-shadow: 0 3px 10px rgba(37, 99, 235, 0.2); margin-bottom: 8px; }
+    .header-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
     .header-sub { font-size: 16px; opacity: 0.95; background: rgba(255, 255, 255, 0.18); padding: 6px 16px; border-radius: 20px; display: inline-block; font-weight: 600; }
-    .sticky-nav { position: sticky; top: 12px; background: #ffffff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); z-index: 1000; padding: 14px 15px; border-radius: 14px; margin-bottom: 24px; border: 1px solid #e2e8f0; }
-    .nav-title { font-size: 16px; font-weight: 800; color: #1d4ed8; margin-bottom: 10px; text-align: center; }
-    .search-box { width: 100%; padding: 11px 14px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 10px; margin-bottom: 10px; outline: none; }
+    .sticky-nav { position: static; background: #ffffff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); z-index: 1000; padding: 8px 10px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #e2e8f0; }
+    .nav-title { display: none; font-size: 16px; font-weight: 800; color: #1d4ed8; margin-bottom: 10px; text-align: center; }
+    .search-box { width: 100%; padding: 7px 12px; font-size: 15px; border: 2px solid #cbd5e1; border-radius: 10px; margin-bottom: 6px; outline: none; }
     .search-box:focus { border-color: #2563eb; }
-    .nav-buttons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-    .nav-btn { flex: 1 1 30%; background-color: #f1f5f9; border: 2px solid #cbd5e1; color: #334155; padding: 9px 4px; text-align: center; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
+    .nav-buttons { display: flex; flex-wrap: nowrap; gap: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .nav-buttons::-webkit-scrollbar { display: none; }
+    .nav-btn { flex: 1 0 auto; white-space: nowrap; background-color: #f1f5f9; border: 2px solid #cbd5e1; color: #334155; padding: 6px 10px; text-align: center; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; }
     .nav-btn:hover, .nav-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); }
-    .result-info { text-align: center; font-size: 14px; font-weight: 700; color: #64748b; margin-top: 8px; }
-    .section-box { margin-bottom: 26px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-    .section-title { font-size: 19px; font-weight: 800; color: #0f172a; padding-bottom: 10px; border-bottom: 3px solid #2563eb; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .result-info { text-align: center; font-size: 12px; font-weight: 700; color: #64748b; margin-top: 5px; }
+    .section-box { margin-bottom: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+    .section-title { font-size: 18px; font-weight: 800; color: #0f172a; padding-bottom: 8px; border-bottom: 3px solid #2563eb; display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
     .section-count { font-size: 14px; font-weight: 700; color: #2563eb; background: #eff6ff; padding: 3px 10px; border-radius: 12px; }
-    .card-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+    .card-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
     .section-box.collapsed .card-list { display: none; }
     .card { background-color: #ffffff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 16px 18px; text-decoration: none; color: inherit; display: block; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); transition: all 0.2s ease; }
     .card:hover, .card:active { border-color: #2563eb; background-color: #fefefe; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12); }
@@ -35,8 +36,7 @@
 </head>
 <body>
   <div class="header-card">
-    <div class="header-title">✨ 내 생애 추억 사진첩 ✨</div>
-    <div class="header-sub">소중한 발자취: 1971년 ~ 2013년 (총 1,716장)</div>
+    <div class="header-title" style="margin-bottom: 0;">추억의 사진첩</div>
   </div>
   <div class="sticky-nav">
     <div class="nav-title">📌 시대별 선택 및 추억 검색</div>
@@ -79,7 +79,6 @@
         secDiv.innerHTML = `
           <div class="section-title" onclick="this.parentElement.classList.toggle('collapsed')">
             <span>📍 ${sec.title}</span>
-            <span class="section-count">${matched.length}장 ▾</span>
           </div>
           <div class="card-list">
             ${matched.map(it => `
